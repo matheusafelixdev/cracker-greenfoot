@@ -112,7 +112,7 @@ public class Byte extends Actor
                 int direcaoX = getX() - inimigo.getX();
                 int direcaoY = getY() - inimigo.getY();
 
-                int distanciaKnockback = 150;
+                int distanciaKnockback = 130;
 
                 knockbackX = Integer.signum(direcaoX) * distanciaKnockback;
                 knockbackY = Integer.signum(direcaoY) * distanciaKnockback;
