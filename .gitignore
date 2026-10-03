@@ -1,0 +1,6 @@
+*.class
+*.ctxt
+*.bak
+*~
+greenfoot.project
+doc/
