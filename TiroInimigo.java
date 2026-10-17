@@ -2,28 +2,34 @@ import greenfoot.*;
 
 public class TiroInimigo extends Actor
 {
-    private int velocidade = 5;
+    private int velocidade = 3;
 
-    
     public TiroInimigo()
     {
-        getImage().scale(30, 30);
+        getImage().scale(30, 16);
     }
-    
+
+    public TiroInimigo(int velocidade)
+    {
+        this.velocidade = velocidade;
+        getImage().scale(30, 16);
+    }
+
     public void act()
     {
-        move(velocidade);
-
-        if (isAtEdge()) {
-            getWorld().removeObject(this);
+        FaseBase mundo = (FaseBase) getWorld();
+        if (mundo.estaPausada() || mundo.terminou()) {
             return;
         }
-
-        Actor alvo = getOneIntersectingObject(Byte.class);
+        move(velocidade);
+        if (isAtEdge() || getY() < 110 || getY() > 560 || isTouching(ParedeCodigo.class)) {
+            mundo.removeObject(this);
+            return;
+        }
+        Byte alvo = (Byte) getOneIntersectingObject(Byte.class);
         if (alvo != null) {
-            Byte byte1 = (Byte) alvo;
-            byte1.perderVida();
-            getWorld().removeObject(this);
+            mundo.removeObject(this);
+            alvo.perderVida();
         }
     }
 }

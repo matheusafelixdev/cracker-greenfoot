@@ -1,19 +1,23 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
-/**
- * Write a description of class FragmentoDeDados here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class FragmentoDeDados extends Actor
 {
-    /**
-     * Act - do whatever the FragmentoDeDados wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    public FragmentoDeDados()
+    {
+        GreenfootImage imagem = new GreenfootImage("fragmento-dados.png");
+        imagem.scale(30, 30);
+        setImage(imagem);
+    }
+
     public void act()
     {
-        // Add your action code here.
+        FaseBase mundo = (FaseBase) getWorld();
+        if (mundo.estaPausada() || mundo.terminou()) {
+            return;
+        }
+        if (isTouching(Byte.class)) {
+            mundo.removeObject(this);
+            mundo.adicionarPontos(50);
+        }
     }
 }

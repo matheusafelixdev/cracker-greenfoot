@@ -2,88 +2,85 @@ import greenfoot.*;
 
 public class Virus extends Actor
 {
-    private int vida = 10;
-    private int vidaMaxima = 10;
-    private boolean invocouCapangas = false;
-    private int velocidade = 1;
-    private int cooldownTiro = 0;
-    private final int intervaloTiro = 60;
+    private int vida = 4;
+    private int velocidade = 2;
+    private int cooldownTiro = 90;
 
     public Virus()
     {
         getImage().scale(90, 90);
+        setRotation(Greenfoot.getRandomNumber(360));
+    }
+
+    public Virus(int velocidade)
+    {
+        getImage().scale(90, 90);
+        setRotation(Greenfoot.getRandomNumber(360));
+        this.velocidade = velocidade;
     }
 
     public void act()
     {
-        moverAleatorio();
-        verificarTiro();
-
-        if (invocouCapangas == true && temCapangasVivos() == true) {
-            getImage().setTransparency(120);
-        } else {
-            getImage().setTransparency(255);
+        FaseBase mundo = (FaseBase) getWorld();
+        if (mundo.estaPausada() || mundo.terminou()) {
+            return;
         }
+
+        mover();
+        verificarTiro();
     }
 
-    private void moverAleatorio()
+    private void mover()
     {
-        if (Greenfoot.getRandomNumber(100) < 5) {
+        int xAnterior = getX();
+        int yAnterior = getY();
+
+        if (Greenfoot.getRandomNumber(100) < 4) {
             turn(Greenfoot.getRandomNumber(61) - 30);
         }
 
-        if (getX() < 90 || getX() > 810 || getY() < 100 || getY() > 500) {
-            turnTowards(450, 300);
-        }
-
         move(velocidade);
+
+        if (getX() < 50 || getX() > 850 || getY() < 120 || getY() > 550
+            || isTouching(ParedeCodigo.class)) {
+            setLocation(xAnterior, yAnterior);
+            turn(90 + Greenfoot.getRandomNumber(91));
+        }
     }
 
     private void verificarTiro()
     {
+        cooldownTiro = cooldownTiro - 1;
         if (cooldownTiro > 0) {
-            cooldownTiro--;
             return;
         }
 
-        TiroInimigo tiro = new TiroInimigo();
-        getWorld().addObject(tiro, getX(), getY());
-        tiro.setRotation(getRotation());
-        cooldownTiro = intervaloTiro;
+        FaseBase mundo = (FaseBase) getWorld();
+        Byte jogador = mundo.getJogador();
+        if (jogador != null && jogador.getWorld() != null) {
+            TiroInimigo tiro = new TiroInimigo();
+            mundo.addObject(tiro, getX(), getY());
+            tiro.turnTowards(jogador.getX(), jogador.getY());
+        }
+        cooldownTiro = 130;
     }
 
     public void receberDano()
     {
-        if (invocouCapangas == true && temCapangasVivos() == true) {
+        if (getWorld() == null) {
             return;
         }
 
         vida = vida - 1;
-
-        if (vida <= vidaMaxima / 2 && invocouCapangas == false) {
-            invocarCapangas();
-        }
-
         if (vida <= 0) {
             FaseBase mundo = (FaseBase) getWorld();
-            mundo.virusDerrotado();
             mundo.removeObject(this);
+            mundo.virusDerrotado();
         }
     }
 
-    private void invocarCapangas()
+    public int getVida()
     {
-        invocouCapangas = true;
-
-        getWorld().addObject(new Capanga(), getX() + 80, getY());
-        getWorld().addObject(new Capanga(), getX() - 80, getY());
-    }
-
-    private boolean temCapangasVivos()
-    {
-        if (getWorld().getObjects(Capanga.class).size() > 0) {
-            return true;
-        }
-        return false;
+        return vida;
     }
 }

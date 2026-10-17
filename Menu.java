@@ -1,21 +1,26 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
-/**
- * Write a description of class Menu here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Menu extends World
 {
+    private boolean enterLiberado;
 
-    /**
-     * Constructor for objects of class Menu.
-     * 
-     */
     public Menu()
-    {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+    {
+        super(900, 600, 1);
+
+        GreenfootImage fundo = new GreenfootImage("menu.png");
+        fundo.scale(900, 600);
+        setBackground(fundo);
+    }
+
+    public void act()
+    {
+        if (!Greenfoot.isKeyDown("enter")) {
+            enterLiberado = true;
+        }
+
+        if ((enterLiberado && Greenfoot.isKeyDown("enter")) || Greenfoot.mouseClicked(null)) {
+            Greenfoot.setWorld(new Fase1());
+        }
     }
 }
