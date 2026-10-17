@@ -77,17 +77,17 @@ public class Byte extends Actor
 
     private void moverPara(int x, int y)
     {
-        if (x < 35) {
-            x = 35;
+        if (x < 20) {
+            x = 20;
         }
-        if (x > 865) {
-            x = 865;
+        if (x > 880) {
+            x = 880;
         }
-        if (y < 135) {
-            y = 135;
+        if (y < 85) {
+            y = 85;
         }
-        if (y > 533) {
-            y = 533;
+        if (y > 565) {
+            y = 565;
         }
         int antigoX = getX();
         int antigoY = getY();
@@ -117,7 +117,7 @@ public class Byte extends Actor
             }
         }
         MouseInfo mouse = Greenfoot.getMouseInfo();
-        if (mouse == null || mouse.getY() < 110 || mouse.getY() > 560) {
+        if (mouse == null || mouse.getY() < 50) {
             clique = false;
         }
         if (cooldownTiro > 0) {

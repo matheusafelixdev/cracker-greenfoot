@@ -22,7 +22,9 @@ public class Bug extends Actor
     protected void addedToWorld(World mundo)
     {
         if (mundo instanceof Fase1) {
-            vida = 5;
+            vida = 10;
+            setImage("bug.png");
+            getImage().scale(110, 110);
             cooldownTiro = 0;
             setRotation(0);
         }

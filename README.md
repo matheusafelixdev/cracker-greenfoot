@@ -28,8 +28,8 @@ Se o menu não aparecer, clique com o botão direito na classe `Menu` e escolha 
 
 ## Fases
 
-- **Fase 1:** derrotar um Bug.
-- **Fase 2:** derrotar 12 inimigos, desviando dos tiros e das paredes de código.
+- **Fase 1:** derrotar um Bug maior, que precisa receber 10 tiros.
+- **Fase 2:** derrotar 12 inimigos entre Capangas e Vírus, desviando dos tiros e das paredes de código.
 - **Fase 3:** derrotar o chefe Trojan.
 
 Byte começa com três vidas. Os fragmentos de dados dão pontos. O Overclock aumenta a velocidade e a pontuação por 15 segundos, com 20 segundos de recarga após o efeito.

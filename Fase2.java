@@ -43,7 +43,7 @@ public class Fase2 extends FaseBase
         if (estaPausada() || terminou()) {
             return;
         }
-        int vivos = getObjects(Bug.class).size() + getObjects(Virus.class).size();
+        int vivos = getObjects(Capanga.class).size() + getObjects(Virus.class).size();
         if (vivos >= 2 || derrotados + vivos >= meta) {
             return;
         }
@@ -58,7 +58,7 @@ public class Fase2 extends FaseBase
     {
         Actor inimigo;
         if (criados % 2 == 0) {
-            inimigo = new Bug();
+            inimigo = new Capanga();
         } else {
             inimigo = new Virus();
         }

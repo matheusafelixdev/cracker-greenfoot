@@ -18,9 +18,11 @@ Solte Enter entre as telas para evitar avançar sem querer.
 OBJETIVO
 Byte foi detectado no servidor e precisa escapar.
 Fase 1: derrotar um único Bug, como no projeto original.
-O Bug tem 5 de vida, anda devagar e atira na direção para a qual está virado.
+O Bug fica maior (110 por 110 pixels) e precisa receber 10 tiros para morrer.
+Ele anda devagar e atira na direção para a qual está virado.
 Não há novas ondas ou fragmentos nessa fase.
-Fase 2: derrotar 12 inimigos entre Bugs e Vírus, com até 2 ao mesmo tempo.
+Fase 2: derrotar 12 inimigos entre Capangas e Vírus, com até 2 ao mesmo tempo.
+Os Capangas também contam para completar a fase.
 As paredes de código bloqueiam personagens e tiros, com espaço para desviar.
 Fase 3: derrotar Trojan, que invoca 2 capangas.
 Depois dos capangas, podem aparecer apenas 2 reforços no total: Bug e Vírus,
@@ -50,6 +52,8 @@ Na fase 3, há 240 ciclos de intervalo sem capangas ou reforços vivos.
 O chefe usa 100 ciclos entre tiros normais e 110 quando chega à metade da vida.
 Após cada disparo, ele para de andar por 25 ciclos.
 A fase 1 conserva o ritmo de disparo original de Byte e do Bug.
+Byte pode chegar mais perto das bordas: x entre 20 e 880, y entre 85 e 565.
+Os tiros e a mira por clique funcionam em toda a área abaixo do painel.
 
 OVERCLOCK
 Dura 15 segundos, aumenta a velocidade de 4 para 6 e dá +50% de pontos.

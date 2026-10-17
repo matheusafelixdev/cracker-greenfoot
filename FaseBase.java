@@ -145,7 +145,11 @@ public class FaseBase extends World
 
     public void capangaDerrotado()
     {
-        inimigoDerrotado(10, false);
+        if (this instanceof Fase2) {
+            inimigoDerrotado(10, true);
+        } else {
+            inimigoDerrotado(10, false);
+        }
     }
 
     private void inimigoDerrotado(int pontos, boolean contaNaMeta)

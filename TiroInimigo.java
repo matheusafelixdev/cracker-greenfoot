@@ -22,7 +22,7 @@ public class TiroInimigo extends Actor
             return;
         }
         move(velocidade);
-        if (isAtEdge() || getY() < 110 || getY() > 560 || isTouching(ParedeCodigo.class)) {
+        if (isAtEdge() || getY() < 50 || isTouching(ParedeCodigo.class)) {
             mundo.removeObject(this);
             return;
         }
