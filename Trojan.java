@@ -8,7 +8,6 @@ public class Trojan extends Actor
     private int cooldownTiro = 100;
     private int tempoDesvio = 0;
     private int tempoParado = 0;
-    private boolean invocouCapangas = false;
     private boolean proximaRajada = true;
 
     public Trojan()
@@ -21,29 +20,6 @@ public class Trojan extends Actor
     {
         FaseBase fase = (FaseBase) mundo;
         fase.atualizarChefe(vida, vidaMaxima);
-
-        if (invocouCapangas == false) {
-            invocouCapangas = true;
-            int esquerda = getX() - 110;
-            int direita = getX() + 110;
-            int altura = getY();
-
-            if (esquerda < 50) {
-                esquerda = 50;
-            }
-            if (direita > 850) {
-                direita = 850;
-            }
-            if (altura < 120) {
-                altura = 120;
-            }
-            if (altura > 550) {
-                altura = 550;
-            }
-
-            mundo.addObject(new Capanga(), esquerda, altura);
-            mundo.addObject(new Capanga(), direita, altura);
-        }
     }
 
     public void act()
@@ -69,20 +45,25 @@ public class Trojan extends Actor
             return;
         }
 
+        int xAnterior = getX();
+        int yAnterior = getY();
+        int rotacaoAnterior = getRotation();
         if (tempoDesvio > 0) {
             tempoDesvio = tempoDesvio - 1;
         } else {
             turnTowards(jogador.getX(), jogador.getY());
         }
 
-        int xAnterior = getX();
-        int yAnterior = getY();
         move(velocidade);
 
         if (getX() < 50 || getX() > 850 || getY() < 120 || getY() > 550
-            || isTouching(ParedeCodigo.class)) {
+            || isTouching(ParedeCodigo.class) || isTouching(Capanga.class)) {
             setLocation(xAnterior, yAnterior);
+            setRotation(rotacaoAnterior);
             turn(90 + Greenfoot.getRandomNumber(91));
+            if (isTouching(ParedeCodigo.class) || isTouching(Capanga.class)) {
+                setRotation(rotacaoAnterior);
+            }
             tempoDesvio = 35;
         }
     }

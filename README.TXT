@@ -24,9 +24,10 @@ Não há novas ondas ou fragmentos nessa fase.
 Fase 2: derrotar 12 inimigos entre Capangas e Vírus, com até 2 ao mesmo tempo.
 Os Capangas também contam para completar a fase.
 As paredes de código bloqueiam personagens e tiros, com espaço para desviar.
-Fase 3: derrotar Trojan, que invoca 2 capangas.
-Depois dos capangas, podem aparecer apenas 2 reforços no total: Bug e Vírus,
-um por vez. Eles não são necessários para vencer.
+Fase 3: derrotar Trojan em uma arena com três paredes de código.
+O chefe começa sozinho. Os Capangas entram um por vez, longe dos personagens
+e das paredes, com até 2 vivos e no máximo 4 durante toda a luta.
+Os Capangas não são necessários para vencer.
 Trojan mantém 20 de vida. Na metade da vida, alterna rajadas de três tiros
 e tiros simples. Após disparar, para brevemente para permitir um contra-ataque.
 
@@ -48,7 +49,9 @@ Nas fases 2 e 3, Byte dispara mais rápido e os tiros inimigos são mais lentos.
 Bugs têm 3 de vida nessas fases, Vírus têm 4 e capangas têm 2.
 O chefe e os capangas se movimentam mais devagar.
 A fase 2 aguarda 90 ciclos com vaga antes de repor um inimigo.
-Na fase 3, há 240 ciclos de intervalo sem capangas ou reforços vivos.
+Na fase 3, há 180 ciclos com vaga entre as entradas dos Capangas.
+A espera fica congelada quando há dois Capangas vivos.
+Trojan e os Capangas desviam entre si para não ficarem sobrepostos.
 O chefe usa 100 ciclos entre tiros normais e 110 quando chega à metade da vida.
 Após cada disparo, ele para de andar por 25 ciclos.
 A fase 1 conserva o ritmo de disparo original de Byte e do Bug.

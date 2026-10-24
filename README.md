@@ -30,7 +30,7 @@ O projeto foi desenvolvido como exercício de aprendizado para aplicar lógica d
 | --- | --- |
 | **1 — Camada de Acesso** | Derrotar um Bug de tamanho maior, que precisa receber 10 tiros. |
 | **2 — Firewall Central** | Derrotar 12 inimigos entre Capangas e Vírus, com até dois ao mesmo tempo. |
-| **3 — Núcleo do Sistema** | Derrotar Trojan, chefe com 20 pontos de vida, capangas e ataques que mudam na metade da vida. |
+| **3 — Núcleo do Sistema** | Derrotar Trojan, chefe com 20 pontos de vida, em uma arena com três paredes. Capangas entram um por vez, com até dois vivos e quatro no total. Os ataques do chefe mudam na metade da vida. |
 
 ## Conceitos de programação aplicados
 

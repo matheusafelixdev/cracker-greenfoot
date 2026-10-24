@@ -29,20 +29,36 @@ public class Capanga extends Actor
             return;
         }
 
+        int xAnterior = getX();
+        int yAnterior = getY();
+        int rotacaoAnterior = getRotation();
         if (tempoDesvio > 0) {
             tempoDesvio = tempoDesvio - 1;
         } else {
             turnTowards(jogador.getX(), jogador.getY());
         }
 
-        int xAnterior = getX();
-        int yAnterior = getY();
         move(velocidade);
 
-        if (getX() < 50 || getX() > 850 || getY() < 120 || getY() > 550
-            || isTouching(ParedeCodigo.class)) {
+        boolean bloqueado = getX() < 50 || getX() > 850 || getY() < 120 || getY() > 550
+            || isTouching(ParedeCodigo.class);
+        if (mundo instanceof Fase3) {
+            if (isTouching(Trojan.class) || isTouching(Capanga.class)) {
+                bloqueado = true;
+            }
+        }
+        if (bloqueado) {
             setLocation(xAnterior, yAnterior);
+            if (mundo instanceof Fase3) {
+                setRotation(rotacaoAnterior);
+            }
             turn(90 + Greenfoot.getRandomNumber(91));
+            if (mundo instanceof Fase3) {
+                if (isTouching(ParedeCodigo.class) || isTouching(Trojan.class)
+                    || isTouching(Capanga.class)) {
+                    setRotation(rotacaoAnterior);
+                }
+            }
             tempoDesvio = 25;
         }
     }
